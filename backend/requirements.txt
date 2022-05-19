@@ -18,8 +18,8 @@ cryptography==3.4.8
 dependency-injector==4.36.0
 fastapi==0.68.1
 fastapi-pagination==0.9.1
-google-api-core==2.7.3
-google-api-python-client==1.12.8
+google-api-core
+google-api-python-client
 google-auth==1.27.0
 google-auth-httplib2==0.0.4
 google-auth-oauthlib==0.5.1
