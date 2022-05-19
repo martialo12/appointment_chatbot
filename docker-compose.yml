@@ -1,0 +1,65 @@
+version: '3.7'
+
+services:
+
+  # postgres:
+  #   container_name: postgres
+  #   hostname: posgresql
+  #   image: gcr.io/cloudsql-docker/gce-proxy:1.16
+  #   command: ./cloud_sql_proxy -dir=/etc -instances=pg-it-n-app-012810:europe-west1:innovation-db-eu-west=tcp:0.0.0.0:5432 -credential_file=/etc/$CREDENTIAL
+  #   environment:
+  #     POSTGRES_USER: nfzadmin
+  #     POSTGRES_PASSWORD: m9AtAVICTIl6oGKcPYRB
+  #     POSTGRES_DB: nudge-for-zero
+  #   restart: always
+  #   volumes:
+  #     - ./$CREDENTIAL:/etc/$CREDENTIAL
+  #   ports:
+  #     - '5432:5432'
+  #   networks:
+  #           #- traefik-public
+  #     - chatbot-ext
+
+  chatbot:
+    container_name: chatbot
+    restart: always
+    build:
+      context: ./backend
+      target: dev
+    volumes:
+      - ./backend/:/app/:cached  # Mount code to allow for hot reloading
+      - ./.docker/.ipython:/root/.ipython:cached
+    # environment:
+      # POSTGRESQL_HOST: "postgres"
+      # POSTGRESQL_PORT: 5432
+      # POSTGRESQL_DATABASE: "nudge-for-zero"
+      # POSTGRESQL_USERNAME: "nfzadmin"
+      # POSTGRESQL_PASSWORD: "m9AtAVICTIl6oGKcPYRB"
+      # DATABASE_URL: 'postgresql://nfzadmin:m9AtAVICTIl6oGKcPYRB@postgres:5432/nudge-for-zero'
+    # networks:
+    #   # Use the public network created to be shared between Traefik and
+    #   # any other service that needs to be publicly available with HTTPS
+    #   - traefik-public
+    #   - chatbot-ext
+    labels:
+      # Enable Traefik for this specific "chatbot" service
+      - "traefik.enable=true"
+      - "traefik.http.routers.chatbot.rule=Host(`pwc-ita-chatbot.dev-pwc-ita-innovation.itgservices.it`) && PathPrefix(`/`)"
+      - "traefik.http.routers.chatbot.service=chatbot"
+      - "traefik.http.routers.chatbot.entrypoints=web-secured"
+      - "traefik.http.routers.chatbot.tls.certresolver=leresolver"
+      - "traefik.http.routers.chatbot.tls=true"
+      - "traefik.http.services.chatbot.loadbalancer.server.port=8090"
+      - "traefik.docker.network=traefik-public"
+    ports:
+      - '8090:8000'
+    networks:
+    # Use the public network created to be shared between Traefik and\
+    # any other service that needs to be publicly available with HTTPS
+     - traefik-public
+     # - chatbot-ext
+
+networks:
+  traefik-public:
+        external: true
+  # chatbot-ext:

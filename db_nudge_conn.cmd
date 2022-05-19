@@ -1,0 +1,1 @@
+.\cloud_sql_proxy_x64.exe -instances=pg-it-n-app-012810:europe-west1:innovation-db-eu-west=tcp:5432 -credential_file=.\nfzadmin-pg-it-n-app-012810-fe0faa03938f.json

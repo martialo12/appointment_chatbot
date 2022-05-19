@@ -1,0 +1,62 @@
+version: '3.7'
+services:
+  traefik:
+    # The official v2 Traefik docker image
+    image: traefik:v2.5
+    container_name: traefik
+    # Enables the web UI and tells Traefik to listen to docker
+    command:
+      - "--api"
+      - "--api.insecure=true"
+      - "--api.dashboard=true"
+      - "--providers.docker"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web-secured.address=:443"
+      - "--log.level=DEBUG"
+      - "--accessLog.filePath=/logs/access.log"
+      - "--log.filePath=/logs/traefik.log"
+      - "--providers.docker"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=traefik-public"
+     ## Certificate Settings (Let's Encrypt) -  https://docs.traefik.io/https/acme/#configuration-examples ##
+      - "--certificatesresolvers.leresolver.acme.tlschallenge=true" # <== Enable TLS-ALPN-01 to generate and renew ACME certs
+      - "--certificatesresolvers.leresolver.acme.email=davide.mietto@pwc.com" # <== Setting email for certs
+      - "--certificatesresolvers.leresolver.acme.storage=/letsencrypt/acme.json" # <== Defining acme file to store cert information
+    ports:
+      # The HTTP port
+      - "80:80"
+      - "443:443"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./logs:/logs # <== Volume for certs (TLS)
+      - ./letsencrypt:/letsencrypt # <== Volume for certs (TLS)
+      #- ./dynamic.yaml:/dynamic.yaml # <== Volume for dynamic conf file, **ref: line 27
+    networks:
+      - traefik-public
+    restart: always
+    labels:
+    #### Labels define the behavior and rules of the traefik proxy for this container ####
+      - "traefik.enable=true" # <== Enable traefik on itself to view dashboard and assign subdomain to view it
+      #- "traefik.http.routers.api.rule=Host(`monitor.pwc-ita-innovation.itgservices.it`)"  #, `mio3.e-den.it`)" # <== Setting the domain for the dashboard
+      - "traefik.http.routers.api.service=api@internal" # <== Enabling the api to be a service to access
+      - "traefik.http.routers.api.middlewares=redirect-to-https"
+      - "traefik.http.routers.traefik.rule=Host(`monitor.dev-pwc-ita-innovation.itgservices.it`)"  #, `mio3.e-den.it`)" # <== Setting the domain for the dashboard
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.tls.certresolver=leresolver"
+      #- "traefik.http.routers.traefik.tls.domains[0].main=pwc-ita-innovation.itgservices.it"
+      # - "entrypoints.web.http.redirections.entryPoint.to=web-secured"
+      # - "entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.http-catchall.entrypoints=web"
+      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      #- "traefik.http.routers.traefik.middlewares=auth"
+      #- "traefik.http.middlewares.auth.basicauth.users=sandro:$$apr1$$0vwEv5JD$$M1ay7Fynnu/m2/nEMkuKK/"
+      - "traefik.http.middlewares.no-www-redirectregex.redirectregex.regex=^https?://(?:www.)(.*)"
+      - "traefik.http.middlewares.no-www-redirectregex.redirectregex.replacement=https://$${1}"
+      - "traefik.port=80"
+
+networks:
+  traefik-public:
+    external: true

@@ -1,0 +1,10 @@
+db:
+  postgresql:
+    # url: "postgresql://nfzadmin:m9AtAVICTIl6oGKcPYRB@fastapi-starterkit_postgres_1:5432/testdb"
+    url: "postgresql://nfzadmin:m9AtAVICTIl6oGKcPYRB@postgres:5432/nudge-for-zero"
+  mysql:
+    url: ""
+  oraccle:
+    url: ""
+  sqlite:
+    url: "sqlite:///./test.db"

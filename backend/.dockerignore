@@ -1,0 +1,6 @@
+env
+.mypy_cache
+__pycache__
+*.pyc
+.vscode
+.pytest_cache

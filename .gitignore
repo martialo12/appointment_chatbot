@@ -1,0 +1,68 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.idea/
+.vs/
+
+# virtual environments
+/env
+
+# database
+# /backend/test.db
+
+/letsencrypt
+/logs
+
+# dependencies
+/frontend/node_modules
+/frontend/.pnp
+/frontend.pnp.js
+
+# testing
+/frontend/coverage
+
+# production
+/frontend/build
+
+# misc
+/frontend/.DS_Store
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+/.vscode
+/backend/.pytest_cache/
+/backend/app/__pycache__
+/backend/app/api/__pycache__
+/backend/app/api/auth/__pycache__
+/backend/app/api/core/__pycache__
+
+/backend/app/api/core/providers/__pycache__
+/backend/app/api/core/schemes/__pycache__
+/backend/app/api/core/custom_lib/__pycache__
+
+/backend/app/api/user/__pycache__
+/backend/app/db/__pycache__
+/backend/app/api/role/__pycache__
+/backend/app/api/transport/__pycache__
+/backend/app/api/office/__pycache__
+/backend/app/api/transfert_list/__pycache__
+/backend/app/api/version/__pycache__
+/backend/app/api/technical_budget_log/__pycache__
+/backend/app/api/location/__pycache__
+/backend/app/api/travel_planning/__pycache__
+/backend/app/api/role/__pycache__
+/backend/app/tests/__pycache__
+/backend/app/api/chatbot/__pycache__
+backend/app/core/custom_lib/__pycache__
+
+
+# migrations
+/backend/app/migrations
+/backend/app/alembic.ini
+
+docker-compose.override.yml
+report.html
