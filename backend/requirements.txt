@@ -30,7 +30,7 @@ googlemaps==4.5.3
 greenlet==1.1.2
 grpcio==1.46.1
 grpcio-status==1.46.1
-h11==0.13.0
+h11
 httpcore==0.14.7
 httplib2==0.20.4
 httpx==0.21.1
