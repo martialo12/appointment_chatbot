@@ -17,7 +17,7 @@ class actions_on_google_response:
 
     # class variable initializer initializer
     def __init__(self):
-        self.platform = "GOOGLE_HANGOUTS"
+        self.platform = "TELEGRAM"
 
     """
     Actions on Google Simple Response Builder
@@ -72,7 +72,7 @@ class actions_on_google_response:
     @param buttons = list of [button_title, url_link]
     """
 
-    def card(self, title, subtitle="", formattedText="", image=None, buttons=None):
+    def card(self, title, subtitle="", image=None, buttons=None):
         # list to store buttons responses
         buttons_json = []
         if buttons is not None:

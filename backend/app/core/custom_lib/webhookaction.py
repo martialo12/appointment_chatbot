@@ -36,12 +36,12 @@ class WebhookAction:
     def create_meeting(self) -> dict:
         try:
             emails_participants = set(
-                self.query_result["parameters"]["emailpartecipanti"]
+                self.query_result["parameters"]["emailparticipants"]
             )
-            event_day = self.query_result["parameters"]["giornoevento"]
-            start_date_time = self.query_result["parameters"]["orainizio"]
-            end_date_time = self.query_result["parameters"]["orafine"]
-            title = self.query_result["parameters"]["summary"]
+            event_day = self.query_result["parameters"]["jourRDV"]
+            start_date_time = self.query_result["parameters"]["heureDebut"]
+            end_date_time = self.query_result["parameters"]["heureFin"]
+            title = self.query_result["parameters"]["titre"]
             description = self.query_result["parameters"]["description"]
             logger.debug(f"emails_participants: {emails_participants}")
             logger.debug(f"event_day: {event_day}")
@@ -85,8 +85,8 @@ class WebhookAction:
             end = datetime.fromisoformat(end_date_time).strftime("%d-%m-%Y %H:%M")
             logger.debug(f"start: {start}")
             logger.debug(f"end: {end}")
-            event = f"""il meeting intitolato: *{event_result["summary"]}* inizierà: _{start}_,
-             e terminerà: _{end}_\n\n Grazie <users/{self.user_info['id']}>! e a presto!"""
+            event = f"""Le meeting intitulé: *{event_result["summary"]}* débutera: _{start}_,
+             e terminera: _{end}_\n\n Merci <users/{self.user_info['id']}>! à la prochaine"""
             logger.debug(f"event: {event}")
             fufillment.append(event)
             res = self.ful.main_response(
@@ -100,10 +100,10 @@ class WebhookAction:
         except HttpError as err:
             logger.error(f"something went wrong: {err}")
             error_message = """
-            Mi dispiace, ma si è verificato un errore durante la creazione della riunione.
-            Per favore, ricomincia.
+            Je suis désolé, mais une erreur est survenue durant la création de la réunion.
+            S'il te plait, recommence de nouveau.
 
-            Grazie.
+            Merci.
             """
             res = self.ful.main_response(
                 fulfillment_text=self.ful.fulfillment_text(error_message),
@@ -117,10 +117,10 @@ class WebhookAction:
         if self.user_info:
             logger.info(f"user_inf: {self.user_info}")
             # self.query_result['parameters']['email'] = self.user_info["email"]
-            question = "Spero stia bene. Come posso aiutarti?"
+            question = "J'espère que tu vas bien. Comment puis je t'aider?"
             res = self.ful.main_response(
                 fulfillment_text=self.ful.fulfillment_text(
-                    f"Ciao <users/{self.user_info['id']}>!\n {question}"
+                    f"Bonjour <users/{self.user_info['id']}>!\n {question}"
                 ),
                 fulfillment_messages=None,
                 output_contexts=None,
@@ -136,16 +136,16 @@ class WebhookAction:
             fulfillment_messages=self.ful.fulfillment_messages(
                 [
                     self.aog.card(
-                        title="Nuova autenticazione",
-                        subtitle="Ciao, devi autenticarti prima di usare il nostro servizio",
-                        formattedText="Ciao, devi autenticarti prima di usare il nostro servizio",
+                        title="Authentification",
+                        subtitle="Salut, tu dois t'authentifier pour utiliser ce service",
                         buttons=[
-                            "pwc login",
-                            "https://pwc-ita-chatbot.dev-pwc-ita-innovation.itgservices.it/authorize",
+                            "login",
+                            "https://chatbot.pythonlegacy.com/authorize",
                         ],
                         image=[
-                            "https://login.pwc.com/login/assets/PwCLogo.png",
-                            "pwc login",
+                            "https://e7.pngegg.com/pngimages/715/371/png-clipart-youtube-google-logo-google-s-google"
+                            "-account-youtube-text-trademark.png",
+                            "login",
                         ],
                     )
                 ]

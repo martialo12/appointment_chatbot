@@ -8,8 +8,8 @@ from pydantic import BaseModel
 
 
 class Action(str, Enum):
-    CREATE_MEETING = "creazione_evento"
-    GREETINGS = "welcome"
+    CREATE_MEETING = "input.Meeting"
+    GREETINGS = "input.welcome"
 
 
 class CreateGoogleCredentials(BaseModel):
