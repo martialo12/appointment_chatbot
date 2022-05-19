@@ -67,3 +67,7 @@ backend/app/core/custom_lib/__pycache__
 
 docker-compose.override.yml
 report.html
+
+# secrets file
+backend/app/core/client_secrets.json
+backend/app/core/secrets.json
