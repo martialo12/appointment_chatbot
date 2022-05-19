@@ -20,7 +20,7 @@ services:
       - "--providers.docker.network=traefik-public"
      ## Certificate Settings (Let's Encrypt) -  https://docs.traefik.io/https/acme/#configuration-examples ##
       - "--certificatesresolvers.leresolver.acme.tlschallenge=true" # <== Enable TLS-ALPN-01 to generate and renew ACME certs
-      - "--certificatesresolvers.leresolver.acme.email=davide.mietto@pwc.com" # <== Setting email for certs
+      - "--certificatesresolvers.leresolver.acme.email=martialo218@gmail.com" # <== Setting email for certs
       - "--certificatesresolvers.leresolver.acme.storage=/letsencrypt/acme.json" # <== Defining acme file to store cert information
     ports:
       # The HTTP port
@@ -41,7 +41,7 @@ services:
       #- "traefik.http.routers.api.rule=Host(`monitor.pwc-ita-innovation.itgservices.it`)"  #, `mio3.e-den.it`)" # <== Setting the domain for the dashboard
       - "traefik.http.routers.api.service=api@internal" # <== Enabling the api to be a service to access
       - "traefik.http.routers.api.middlewares=redirect-to-https"
-      - "traefik.http.routers.traefik.rule=Host(`monitor.dev-pwc-ita-innovation.itgservices.it`)"  #, `mio3.e-den.it`)" # <== Setting the domain for the dashboard
+      - "traefik.http.routers.traefik.rule=Host(`monitor.pythonlegacy.com`)"  #, `mio3.e-den.it`)" # <== Setting the domain for the dashboard
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.tls.certresolver=leresolver"
       #- "traefik.http.routers.traefik.tls.domains[0].main=pwc-ita-innovation.itgservices.it"

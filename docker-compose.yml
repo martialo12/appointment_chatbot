@@ -44,7 +44,7 @@ services:
     labels:
       # Enable Traefik for this specific "chatbot" service
       - "traefik.enable=true"
-      - "traefik.http.routers.chatbot.rule=Host(`pwc-ita-chatbot.dev-pwc-ita-innovation.itgservices.it`) && PathPrefix(`/`)"
+      - "traefik.http.routers.chatbot.rule=Host(`chatbot.pythonlegacy.com`) && PathPrefix(`/`)"
       - "traefik.http.routers.chatbot.service=chatbot"
       - "traefik.http.routers.chatbot.entrypoints=web-secured"
       - "traefik.http.routers.chatbot.tls.certresolver=leresolver"
