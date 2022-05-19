@@ -207,7 +207,7 @@ class GoogleCredentialsRepository:
         # request.session['authorization_url'] = USER_DICT['authorization_url']
         # logger.debug(f"session-oauth2callback: {request.session }")
         # logger.debug(f"authorization_url-oauth2callback: {request.state.authorization_url }")
-        response = RedirectResponse(url="/", status_code=302)
+        response = RedirectResponse(url="/accueil", status_code=302)
         response.set_cookie(
             key="authorization_url", value=USER_DICT["authorization_url"]
         )

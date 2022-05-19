@@ -31,7 +31,7 @@ chatbot = APIRouter(tags=["chatbot"])
 user_info = None
 
 
-@chatbot.get("/")
+@chatbot.get("/accueil")
 @inject
 async def test(
     request: Request,
@@ -108,6 +108,8 @@ async def webhook(
 
     Returns:
         dict: fulfillment response
+        :param request:
+        :param gcreds_service:
     """
     async with exception_handling():
         # user_info = ast.literal_eval(request.cookies.get('user')) if request.cookies.get('user') else None
