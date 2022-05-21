@@ -1,6 +1,6 @@
 # appointment_chatbot
 
-![Build status](https://github.com/martialo12/appointment_chatbot/actions/workflows/python-app.yml/badge.svg)]
+![Build status](https://github.com/martialo12/appointment_chatbot/actions/workflows/python-app.yml/badge.svg)
 
 let's have a look at high level design before trying to dive into project code.
 ![architecture](/img/diagram.png)
