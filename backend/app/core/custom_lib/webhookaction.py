@@ -53,6 +53,7 @@ class WebhookAction:
             fufillment = []
             logger.debug(f"Action.CREATE_EVENT: {Action.CREATE_MEETING}")
             emails_participants.add(self.user_info["email"])
+            logger.debug(f"emails_participants->: {emails_participants}")
             # d = datetime.now().date()
             # tomorrow = datetime(d.year, d.month, d.day, 10) + timedelta(days=1)
             # start = tomorrow.isoformat()
@@ -120,7 +121,7 @@ class WebhookAction:
             question = "J'espère que tu vas bien. Comment puis je t'aider?"
             res = self.ful.main_response(
                 fulfillment_text=self.ful.fulfillment_text(
-                    f"Bonjour <users/{self.user_info['id']}>!\n {question}"
+                    f"Bonjour tg://user?id=<{self.user_info['id']}>\n {question}"
                 ),
                 fulfillment_messages=None,
                 output_contexts=None,
