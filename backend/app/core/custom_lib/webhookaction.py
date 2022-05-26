@@ -121,8 +121,7 @@ class WebhookAction:
             question = "J'espère que tu vas bien. Comment puis je t'aider?"
             res = self.ful.main_response(
                 fulfillment_text=self.ful.fulfillment_text(
-                    f"Bonjour *{self.user_info['given_name']}* \n {question}" +
-                    f" <a href='tg://user?id={self.user_info['id']}'>{self.user_info['given_name']}</a>"
+                    f"Bonjour **{self.user_info['given_name']}** \n {question}"
                 ),
                 fulfillment_messages=None,
                 output_contexts=None,
