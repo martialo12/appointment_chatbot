@@ -140,7 +140,7 @@ class WebhookAction:
                         subtitle="Salut, tu dois t'authentifier pour utiliser ce service",
                         buttons=[
                             "login",
-                            "https://chatbot.pythonlegacy.com/authorize",
+                            "https://kwagchatbot.xyz/authorize",
                         ],
                         image=[
                             "https://e7.pngegg.com/pngimages/715/371/png-clipart-youtube-google-logo-google-s-google"

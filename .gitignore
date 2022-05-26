@@ -69,5 +69,5 @@ docker-compose.override.yml
 report.html
 
 # secrets file
-# backend/app/core/client_secrets.json
+backend/app/core/client_secrets.json
 backend/app/core/secrets.json
