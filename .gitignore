@@ -68,5 +68,13 @@ docker-compose.override.yml
 report.html
 
 # secrets file
-# backend/app/core/client_secrets.json
+backend/app/core/client_secrets.json
 backend/app/core/secrets.json
+backend/app/chatbot/.env
+
+.gitlab-ci.yml
+cloudbuild.yaml
+db_nudge_conn.cmd
+backend/test.db
+backend/.gitlab-ci-backend.yml
+backend/app/token.json

@@ -38,7 +38,7 @@ services:
     labels:
     #### Labels define the behavior and rules of the traefik proxy for this container ####
       - "traefik.enable=true" # <== Enable traefik on itself to view dashboard and assign subdomain to view it
-      #- "traefik.http.routers.api.rule=Host(`monitor.pwc-ita-innovation.itgservices.it`)"  #, `mio3.e-den.it`)" # <== Setting the domain for the dashboard
+      #- "traefik.http.routers.api.rule=Host(`monitor.kwagchatbot.xyz`)"  #, `mio3.e-den.it`)" # <== Setting the domain for the dashboard
       - "traefik.http.routers.api.service=api@internal" # <== Enabling the api to be a service to access
       - "traefik.http.routers.api.middlewares=redirect-to-https"
       - "traefik.http.routers.traefik.rule=Host(`monitor.kwagchatbot.xyz`)"  #, `mio3.e-den.it`)" # <== Setting the domain for the dashboard

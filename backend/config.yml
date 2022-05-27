@@ -1,7 +1,6 @@
 db:
   postgresql:
-    # url: "postgresql://nfzadmin:m9AtAVICTIl6oGKcPYRB@fastapi-starterkit_postgres_1:5432/testdb"
-    url: "postgresql://nfzadmin:m9AtAVICTIl6oGKcPYRB@postgres:5432/nudge-for-zero"
+    url: "postgresql://test:password@postgres:5432/testdb"
   mysql:
     url: ""
   oraccle:
