@@ -86,8 +86,9 @@ class WebhookAction:
             end = datetime.fromisoformat(end_date_time).strftime("%d-%m-%Y %H:%M")
             logger.debug(f"start: {start}")
             logger.debug(f"end: {end}")
-            event = f"""Le meeting intitulé: *{event_result["summary"]}* débutera: _{start}_,
-             e terminera: _{end}_\n\n Merci <users/{self.user_info['id']}>! à la prochaine"""
+            event = f"""Le meeting intitulé: {event_result["summary"]} a été crée avec succès sur votre calendrier google.\n
+            Il débutera à  {start},et terminera à {end}\n\n 
+            Merci {self.user_info['given_name']} et à la prochaine!"""
             logger.debug(f"event: {event}")
             fufillment.append(event)
             res = self.ful.main_response(
@@ -99,7 +100,7 @@ class WebhookAction:
             logger.debug(f"res: {res}")
             return res
         except HttpError as err:
-            logger.error(f"something went wrong: {err}")
+            logger.error(f"Une erreur est survenue: {err}")
             error_message = """
             Je suis désolé, mais une erreur est survenue durant la création de la réunion.
             S'il te plait, recommence de nouveau.
@@ -121,7 +122,7 @@ class WebhookAction:
             question = "J'espère que tu vas bien. Comment puis je t'aider?"
             res = self.ful.main_response(
                 fulfillment_text=self.ful.fulfillment_text(
-                    f"Bonjour **{self.user_info['given_name']}** \n {question}"
+                    f"Bonjour {self.user_info['given_name']} \n {question}"
                 ),
                 fulfillment_messages=None,
                 output_contexts=None,
@@ -138,7 +139,7 @@ class WebhookAction:
                 [
                     self.aog.card(
                         title="Authentification",
-                        subtitle="Salut, tu dois t'authentifier pour utiliser ce service",
+                        subtitle="il faut t'authentifier pour utiliser ce service",
                         buttons=[
                             "login",
                             "https://kwagchatbot.xyz/authorize",
@@ -146,7 +147,7 @@ class WebhookAction:
                         image=[
                             "https://e7.pngegg.com/pngimages/715/371/png-clipart-youtube-google-logo-google-s-google"
                             "-account-youtube-text-trademark.png",
-                            "login",
+                            "se connecter",
                         ],
                     )
                 ]
