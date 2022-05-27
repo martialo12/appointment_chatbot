@@ -55,7 +55,6 @@
 /backend/app/api/technical_budget_log/__pycache__
 /backend/app/api/location/__pycache__
 /backend/app/api/travel_planning/__pycache__
-/backend/app/api/role/__pycache__
 /backend/app/tests/__pycache__
 /backend/app/api/chatbot/__pycache__
 backend/app/core/custom_lib/__pycache__
