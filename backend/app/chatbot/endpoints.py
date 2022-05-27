@@ -81,7 +81,7 @@ async def test(
                 f"<pre>email: <b>{gcreds.email}</b></pre>"
                 f'<pre>Salut <b>{user_info["given_name"]}</b></pre>'
                 '<p><b>Félicitations!</b> tu es actuellement connecté. '
-                'Ferme cette fenêtre ou cet onglet et retourne au chatbot pour créer ton meeting<p>'
+                'Ferme cette <b>fenêtre</b> ou cet <b>onglet</b> et retourne au <b>chatbot</b> pour créer ton <b>meeting</b><p>'
             )
             return HTMLResponse(html)
         return HTMLResponse('<a href="/authorize">login</a>')
