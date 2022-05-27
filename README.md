@@ -15,9 +15,13 @@ let's have a look at high level design before trying to dive into project code.
 - Login with Google oauth2
 - DialogFlow ES( one of the best NLP tool available out there)
 
-## Usage
+## Usage demo
 
 That was enough talking, how can you use it:
+
+ - Find [@kwagbot](@kwagbot) or [@kwagMeetinBot](@kwagMeetinBot) on telegram and enjoy!
+ - ![/img/demo](/img/demo.gif)
+
 
 
 #### backend
@@ -68,10 +72,10 @@ docker-compose -f docker-compose.traefik.yml -d
 ```
 
 ```
-docker-compose -f docker-compose.yml --env-file api.env up -d
+docker-compose -f docker-compose.yml --env-file up -d
 ```
 
-At `https://nudge-api.dev-pwc-ita-innovation.itgservices.it/docs` or `https://nudge-api.dev-pwc-ita-innovation.itgservices.it/redoc` you can inspect the API documentation
+At `https://kwagchatbot.xyz/docs` or `https://kwagchatbot.xyz//redoc` you can inspect the API documentation
 
 ## Test and Deploy
 
@@ -124,7 +128,9 @@ for any king of issue or prolem , please reach me at: `martialo218@gmail.com`
 if you want to contribute to this project just clone it and start making your changes right away.
 
 ## Authors and acknowledgment
-martialo dev
+**twitter**: martialo dev [follow me](https://twitter.com/martialobug)
+
+**instagram**: martialo dev [follow me](https://www.instagram.com/martialo_dev/)
 
 ## License
 MIT
