@@ -78,9 +78,10 @@ async def test(
         if user_info:
             gcreds = await gcreds_service.create_user_if_not_exist(user_info)
             html = (
-                f"<pre>{gcreds.email}</pre>"
-                f'<pre>Ciao {user_info["given_name"]}</pre>'
-                '<a href="/logout">logout</a>'
+                f"<pre>email: <b>{gcreds.email}</b></pre>"
+                f'<pre>Salut <b>{user_info["given_name"]}</b></pre>'
+                '<p><b>Félicitations!</b> tu es actuellement connecté. '
+                'Ferme cette fenêtre ou cet onglet et retourne au chatbot pour créer ton meeting<p>'
             )
             return HTMLResponse(html)
         return HTMLResponse('<a href="/authorize">login</a>')
